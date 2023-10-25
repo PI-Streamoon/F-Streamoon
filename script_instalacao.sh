@@ -43,6 +43,7 @@ sudo mysql -u "root" -h "localhost" -e "USE streamoon"
 
 if [ $? != 0 ];
     then
+        sudo mysql -u "root" -h "localhost" -e "SET GLOBAL validate_password.special_char_count = 0;"
         sudo mysql -u "root" "" < "$BDPATH"
     else
         echo "banco criado"
