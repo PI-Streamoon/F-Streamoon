@@ -7,7 +7,7 @@ JARPATH="projeto-streamoon.jar"
 
 
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade -y
 
 if [[ $JAVAVERSION == "17.0.5" ]];
     then
