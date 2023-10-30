@@ -2,11 +2,12 @@
 
 # Verificação do Java
 JAVAVERSION=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
-BDPATH="bd_stable.sql"
+BDPATH="script_streamoon.sql"
 JARPATH="projeto-streamoon.jar"
 
 
 sudo apt update
+sudo apt upgrade
 
 if [[ $JAVAVERSION == "17.0.5" ]];
     then
@@ -17,6 +18,12 @@ fi
 
 
 # Verificação do Mysql
+
+if [ ! -e "$BDPATH" ];
+    then
+        echo "Baixando Banco de Dados"
+        wget https://raw.githubusercontent.com/PI-Streamoon/B-Streamoon/main/script_streamoon.sql
+fi
 
 which docker
 
@@ -32,7 +39,7 @@ sudo docker pull mysql:8.0
 
 sudo docker run -d -p 3306:3306 --name containerBD  -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:8.0
 
-sudo docker exec -i containerBD mysql -h 0.0.0.0 -P 3306 -u root -p urubu100 mysql < bd_stable.sql
+sudo docker exec -i containerBD mysql -h 0.0.0.0 -P 3306 -uroot -purubu100 mysql < script_streamoon.sql
 
 
 
