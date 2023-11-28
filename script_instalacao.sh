@@ -39,7 +39,7 @@ sudo docker pull mysql:8.0
 
 sudo docker run -d -p 3306:3306 --name containerBD  -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:8.0
 sudo docker start containerBD
-sudo docker exec -i containerBD -h 127.0.0.1 mysql -P 3306 -uroot -purubu100 mysql < script_streamoon.sql
+sudo docker exec -i containerBD mysql -h 127.0.0.1 -P 3306 -uroot -purubu100 mysql < script_streamoon.sql
 
 
 # Verificação se o .jar já foi instalado
